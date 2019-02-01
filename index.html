@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>Designed By Wilfred</title>
         <link href='style.css' rel='stylesheet' type='text/css'>
 
@@ -12,13 +13,13 @@
     <body>
         <header>
             
-            <div class='title-name'><h1>Glenn Duguid Designs</h1></div>
+            <div id='title-name'><h1>Glenn Duguid<br>Designs</h1></div>
             <nav>
                 <div id='back-home' class='home' >GDD</div>
                 <div id='nav-links'>
-                    <div id='web-nav'>Web</div>
-                    <div id='graphics-nav'>Graphics</div>
-                    <div id='contact-nav'>About</div>
+                    <div id='contact-nav'><h3>About</h3></div>
+                    <div id='projects-nav'><h3>Projects</h3></div>
+                    <div id='contact-nav'><h3>Contact</h3></div>
                 </div>
             </nav>
         </header>
@@ -26,53 +27,88 @@
             <div id='about'>
                 <div id='left-content'>
                     <h2>About</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at maximus nisl, eu maximus enim. Maecenas metus metus, condimentum ac velit nec, suscipit ultrices sapien. Curabitur arcu massa, commodo non nibh vel, ornare iaculis sapien. ,</p>
+                    <p>I am Glenn, a designer from Brisbane Queensland. I graduated from the University of Queensland at the end of 2018, completing my undergraduate Multimedia Design degree. I am excited to grow my existing skills through practical experience, understanding the theoretical and technological components that create usable projects.</p>
                 </div>
                 <div id='right-content'>
-                    <p>Ac elementum ante dictum in. Aenean nulla nibh, fermentum id nulla vitae, tincidunt mollis nisl. Proin ornare gravida urna tincidunt pharetra. Sed pulvinar tellus vel tellus laoreet molestie. Aenean sed ante ante. </p>
+                    <p>My design approach is user-centric and driven by testing input. Through experience, I understand that I am not the end-used, welcoming critique and open to change. I love coming up with new ideas and am confident to put forward suggestions within a team environment.</p>
                     <p> Sed pulvinar tellus vel tellus laoreet molestie. Aenean sed ante ante. Maecenas ullamcorper orci lorem, sit amet viverra neque bibendum blandit.</p>
                 </div>
             </div>
-            <div id='content-container'>
-                <div class='example web' style='background-image: url(img/eg.png);'>
+            <div id="content-container">
+                <!--<div id='filter-grid'>
                     <div>
-                        <h3>UQ Lyfe</h3>
-                        <span>Application to increase student involvement and to strengthen the sense of community at UQ</span>
-                    </div>  
+                        <h2>Work</h2>
+                        
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at maximus nisl, eu maximus enim. Maecenas metus metus, condimentum ac velit nec, suscipit ultrices sapien. Curabitur arcu massa, commodo non nibh vel, ornare iaculis sapien. ,</p>
+                    <div id='filter-buttons'>
+                        <div>X</div>
+                        <div>Z</div>
+                    </div>
                 </div>
-                <div class='example web' style='background-image: url(img/eg.png);'>
-                    <div>
-                        <h3>Revenge Recorder</h3>
-                        <span>Website developed using a personally created loop sequencer framework</span>
-                    </div>              
+                <div id='filter-work'>
+                    <div id='filter-grid'>
+                        <div>Web</div>
+                        <div>Print</div>
+                    </div>
+                </div>-->
+                <div id='filter-container'>
+                    <div id="filter-grid">
+                        <div><h3>WEB</h3></div>
+                        <div><h3>PRINT</h3></div>
+                    </div>
                 </div>
-                <div class='example web' style='background-image: url(img/eg.png);'>
-                    <div>
-                        <h3>IxD API</h3>
-                        <span>Node.js API to assist in the efficient management of the digital workshop by IxD at UQ</span>
-                    </div>                    
-                </div>
-                <div class='example graphics' style='background-image: url(img/phone.jpg);'>
-                    <div>
-                        <h3>Portfolio</h3>
-                        <span>Summation of work created during the Graphic Design course at UQ</span>
-                    </div>                    
-                </div>
-                <div class='example graphics' style='background-image: url(img/phone.jpg);'>
-                    <div>
-                        <h3>Reflected Reality</h3>
-                        <span>Promotional material to supplement the presentation of an interactive bus stop</span>
-                    </div>                    
-                </div>
-                <div class='example graphics' style='background-image: url(img/phone.jpg);'>
-                    <div>
-                        <h3>Advertising</h3>
-                        <span>Material produced when creating a full advertising plan to sell the unsellable</span>
-                    </div>                   
+                <div id='content-grid'>
+                    <div class='example web' style='background-image: url(img/eg.png);'>
+                        <div href='UQLyfe.html'>
+                            <h3>UQ Lyfe</h3>
+                            <span>Application to increase student involvement and to strengthen the sense of community at UQ</span>
+                        </div>  
+                    </div>
+                    <div class='example web' style='background-image: url(img/eg.png);'>
+                        <div>
+                            <h3>Revenge Recorder</h3>
+                            <span>Website developed using a personally created loop sequencer framework</span>
+                        </div>              
+                    </div>
+                    <div class='example web' style='background-image: url(img/eg.png);'>
+                        <div>
+                            <h3>IxD API</h3>
+                            <span>Node.js API to assist in the efficient management of the digital workshop by IxD at UQ</span>
+                        </div>                    
+                    </div>
+                    <div class='example graphics' style='background-image: url(img/phone.jpg);'>
+                        <div>
+                            <h3>Portfolio</h3>
+                            <span>Summation of work created during the Graphic Design course at UQ</span>
+                        </div>                    
+                    </div>
+                    <div class='example graphics' style='background-image: url(img/phone.jpg);'>
+                        <div>
+                            <h3>Reflected Reality</h3>
+                            <span>Promotional material to supplement the presentation of an interactive bus stop</span>
+                        </div>                    
+                    </div>
+                    <div class='example graphics' style='background-image: url(img/phone.jpg);'>
+                        <div>
+                            <h3>Advertising</h3>
+                            <span>Material produced when creating a full advertising plan to sell the unsellable</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
+        <footer>
+            <div id='contact-container'>
+                <h2>Contact</h2>
+                <div id='contact-links'>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            
+        </footer>
         
     </body>
 </html>

@@ -17,27 +17,54 @@ $break_tab : 905px;
 
 body{
     margin:0;
-    font-size: 16pt;
+    font-size: 10pt;
     font-family: font-light;
+    width:100vw;
+
+    @media (min-width : $break_tab){
+        font-size: 14pt;
+    }
 }
 h1{
-    font-size: 3em;
+    text-align: center;
+    font-size: 5em;
     font-family: font-black;
 }
-h2, h3{
+h2{
+    font-size: 2.5em;
     font-family: font-reg;
+    margin: 0;
 }
 header{
     width:100vw;
-    height:55%;
+
+    height:60%;
+
+    @media (min-width : $break_tab){
+        min-height: 64vh;
+        background-position: bottom left;
+    }
+    
+
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    background-color: rgb(244, 255, 251);
-    padding-bottom: $gutter;
+    
+    background-image: url('img/cup4.jpg');
+ 
+    background-repeat:   no-repeat;
+    background-position: center;
+    
+    background-size: cover;
+
+    //margin-bottom: $gutter;
     box-sizing: border-box;
 
+    #title-name{
+        padding-left:2vw;
+        padding-right:2vw;
+    }
     > div{
         cursor: pointer;
     }
@@ -47,13 +74,25 @@ header{
         top:0;
         padding:0.5em;
         font-family:font-black;
+        cursor: pointer;
     }
     nav{
+        z-index: 10;
         width:100%;
         display:flex;
         justify-content: center;
         background-color: antiquewhite;
         left:0;
+        h3{
+            margin:$small_margin;
+        }
+        a{
+            text-decoration: none;
+
+            &:visited{
+                color: black;
+            }
+        }
         #nav-links{
             display: flex;
             width:75%;
@@ -67,9 +106,10 @@ header{
 
             > div{
                 width:25%;
-                height:120%;
+                //height:120%;
                 background-color: beige;
                 text-align: center;
+                cursor: pointer;
             }
             .active{
                 text-decoration: underline;
@@ -98,6 +138,8 @@ header{
     padding-left:$gutter;
     padding-right:$gutter;
     margin-top: $gutter;
+    padding-bottom:2vw;
+    border-bottom:1px solid black;
 
     @media (min-width : $break_tab){
         max-width:80vw;
@@ -118,8 +160,16 @@ header{
         }
         #right-content{
             float:right;
-            margin-top: $small_margin;
             margin-left:$small_margin;
+
+            p{
+                &:first-of-type{
+                    @media (min-width : $break_tab){
+                        margin-top:0;
+                    }
+                    
+                }
+            }
         }
     }
 
@@ -127,69 +177,181 @@ header{
 
 }
 #content-container{
-    display:grid;
-    grid-template-columns: repeat(2, 44vw);
-    grid-template-rows: repeat(3, 44vw); /*(100- gutter*3)/2*/
-    grid-gap: $gutter;
-    box-sizing: content-box;
-    margin: $gutter;
-    justify-content: center;
-
-    @media (min-width : $break_tab){
-        grid-template-columns: repeat(3, 18vw);
-        grid-template-rows: repeat(2, 18vw);
-        margin: 0;
-        margin-bottom: $gutter;
-        margin-top: $gutter;
+    margin-top: 2vh;
+    h2{
+        margin-left:2vw;
     }
+    /*#filter-grid{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        width:100%;
 
-    .example{
-        cursor: pointer;
-        background-size:     cover; 
-        background-repeat:   no-repeat;
-        background-position: center center;
+        #filter-buttons{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            grid-column: 2/3;
+            grid-row: 2/3;
+            > div{
+                height:10vw;
+                width:10vw;
+                
+                background-color: antiquewhite;
 
-        > div{
-
-            display: grid;
-            align-content: flex-end;
-            width:100%;
-            height:100%;
-            padding-left: $gutter;
-            padding-right: $gutter;
-            background-image: linear-gradient( rgba(255,255,255,0),rgba(255,255,255,0.1), rgba(255,255,255,0.8));
-            
-            span{
-                display: none;
+                @media (min-width : $break_tab){
+                    height:100%;
+                    width:4vw;
+                }
             }
+        }
+    }*/
+    #filter-container{
+        width:100%;
+
+        #filter-grid{
+            display: flex;
+            margin:0 auto;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: 2vw;
 
             @media (min-width : $break_tab){
-                text-align: center;
-                justify-content: center;
-                align-content: center;
-    
-                padding-left: 0;
-                padding-right: 0;
+                width:18vw;
 
-                //make into a gradient
-                background-image: linear-gradient( rgba(255,255,255,0.1), rgba(255,255,255,0.8));
-                opacity:0;
-    
-                &:hover{
-                    transition: opacity 0.3s linear;
-                    opacity:1;
-                }
-    
-                span{
-                    padding-left:8%;
-                    padding-right:8%;
-                    display: none;
-
+                > div{
+                    width:4vw;
+                    height:4vw;
                 }
             }
-            
+
+            > div{
+                display: flex;
+                width:20%;
+                height:20%;
+                align-items: center;
+                justify-content: center;
+                border:1px solid black;
+            }
         }
     }
+
+    #content-grid{
+        display:grid;
+        grid-template-columns: repeat(2, 44vw);
+        grid-template-rows: repeat(3, 44vw); /*(100- gutter*3)/2*/
+        grid-gap: 2vw;
+        box-sizing: content-box;
+        margin: $gutter;
+        
+        justify-content: center;
+
+        @media (min-width : $break_tab){
+            grid-template-columns: repeat(3, 18vw);
+            grid-template-rows: repeat(2, 18vw);
+            margin: 0;
+            margin-bottom: $gutter;
+            margin-top: 2vw;
+            grid-gap: 0.5vw;
+        }
+
+        .example{
+            cursor: pointer;
+            background-size:     cover; 
+            background-repeat:   no-repeat;
+            background-position: center center;
+
+            position: relative;
+            > div{
+                position: absolute;
+                display: grid;
+                align-content: flex-end;
+                width:100%;
+                height:100%;
+                padding-left: $gutter;
+                padding-right: $gutter;
+                background-image: linear-gradient( rgba(255,255,255,0),rgba(255,255,255,0.1), rgba(255,255,255,0.8));
+                
+                span{
+                    display: none;
+                }
+
+                @media (min-width : $break_tab){
+
+                    width:100%;
+                    height:100%;
+                    text-align: center;
+                    justify-content: center;
+                    align-content: center;
+        
+                    padding-left: 0;
+                    padding-right: 0;
+
+                    //make into a gradient
+                    background-image: linear-gradient( rgba(255,255,255,0.1), rgba(255,255,255,0.8));
+                    opacity:0;
+        
+                    &:hover{
+                        transition: opacity 0.3s linear;
+                        opacity:1;
+                    }
+        
+                    span{
+                        padding-left:8%;
+                        padding-right:8%;
+                        display: none;
+
+                    }
+                }
+                
+            }
+        }
+    }    
+}
+
+footer{
+    display: flex;
+    width:100%;
+    background-color: black;
+    min-height: 50vh;
+    align-items: center;
+    color: white;
+    padding-bottom: $gutter;
+    margin-top: $gutter;
+
+    #contact-container{
+        width:66vw;
+        //height: 100%;
+        display: block;
+        margin:0 auto;
+        padding:2vw;
+        box-sizing: border-box;
+        h2{
+            margin-bottom: $gutter;
+            text-align: center;
+        }
+        #contact-links{
+            display: flex;
+            justify-content: space-evenly;
+            margin: 0 auto;
+
+            @media (min-width : $break_tab){
+                //width: 40%;
+            }
+            > div{
+                height:10vw;
+                width:10vw;
+                border-radius: 50%;
+                background-color: antiquewhite;
+
+                @media (min-width : $break_tab){
+                    height:5vw;
+                    width:5vw;
+                }
+            }
+        }        
+    }
+    
 }
 
 #web-container{

@@ -6,11 +6,11 @@ $(document).ready(function(){
     originalNavTop = $('nav').offset().top;
 
     //top nav buttons
-    $('#nav-links > div').on('click', function(){
+    $('#graphics-nav, #web-nav').on('click', function(){
         var id = $(this).attr('id');
         console.log(id);
 
-        
+        scrollWindow('#content-container');
 
         if($(this).hasClass('active')){
             $('.example').css('display','inline');
@@ -38,26 +38,32 @@ $(document).ready(function(){
         }
 
         
-    })
-
-    $('.title-name').on('click', function(){
-        $('.example').css('display','inline');
-        $('.active').removeClass('active');
-        //$('#align').slideToggle();
+        
     })
 
     $('#contact-nav ').on('click', function(){
-        
         $(this).addClass('active');
-
-        
-
-        $('html, body').animate({scrollTop: $("#about").offset().top}, 2000);
-
-        //$('#align').slideToggle();
+        $('.example').css('display','inline');
+        scrollWindow('#about');
+    })
+    $('#projects-nav').on('click', function(){
+        $(this).addClass('active');
+        $('.example').css('display','inline');
+        scrollWindow('#content-container');
     })
 
+    $('#back-home.home ').on('click', function(){
+        $('.active').removeClass('active');
+        $('.example').css('display','inline');
+        scrollWindow('body');
+    })
+    $('#content-container .example > div').on('click', function(){
+        var targetLocation = $(this).attr('href');
+        console.log(targetLocation);
+        window.location.href = targetLocation;
+    })
 
+    //ghetto sticky
     $(window).on('scroll', function(){
         var windowTop = $(window).scrollTop();
         
@@ -76,3 +82,10 @@ $(document).ready(function(){
 
 })
 
+function scrollWindow (target){
+    var navHeight = $('nav').height();
+
+    $(':animated').stop();
+    $('html, body').animate({scrollTop: $(target).offset().top - navHeight}, 1000);
+    
+}

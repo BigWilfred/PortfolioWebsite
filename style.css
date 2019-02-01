@@ -12,29 +12,50 @@
 }
 body {
   margin: 0;
-  font-size: 16pt;
+  font-size: 10pt;
   font-family: font-light;
+  width: 100vw;
+}
+@media (min-width: 905px) {
+  body {
+    font-size: 14pt;
+  }
 }
 
 h1 {
-  font-size: 3em;
+  text-align: center;
+  font-size: 5em;
   font-family: font-black;
 }
 
-h2, h3 {
+h2 {
+  font-size: 2.5em;
   font-family: font-reg;
+  margin: 0;
 }
 
 header {
   width: 100vw;
-  height: 55%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  background-color: #f4fffb;
-  padding-bottom: 4vw;
+  background-image: url("img/cup4.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   box-sizing: border-box;
+}
+@media (min-width: 905px) {
+  header {
+    min-height: 64vh;
+    background-position: bottom left;
+  }
+}
+header #title-name {
+  padding-left: 2vw;
+  padding-right: 2vw;
 }
 header > div {
   cursor: pointer;
@@ -45,13 +66,24 @@ header #back-home {
   top: 0;
   padding: 0.5em;
   font-family: font-black;
+  cursor: pointer;
 }
 header nav {
+  z-index: 10;
   width: 100%;
   display: flex;
   justify-content: center;
   background-color: antiquewhite;
   left: 0;
+}
+header nav h3 {
+  margin: 0.5vw;
+}
+header nav a {
+  text-decoration: none;
+}
+header nav a:visited {
+  color: black;
 }
 header nav #nav-links {
   display: flex;
@@ -67,9 +99,9 @@ header nav #nav-links {
 }
 header nav #nav-links > div {
   width: 25%;
-  height: 120%;
   background-color: beige;
   text-align: center;
+  cursor: pointer;
 }
 header nav #nav-links .active {
   text-decoration: underline;
@@ -95,6 +127,8 @@ header .home {
   padding-left: 4vw;
   padding-right: 4vw;
   margin-top: 4vw;
+  padding-bottom: 2vw;
+  border-bottom: 1px solid black;
 }
 @media (min-width: 905px) {
   #about {
@@ -113,37 +147,102 @@ header .home {
   }
   #about #right-content {
     float: right;
-    margin-top: 0.5vw;
     margin-left: 0.5vw;
+  }
+}
+@media (min-width: 905px) and (min-width: 905px) {
+  #about #right-content p:first-of-type {
+    margin-top: 0;
   }
 }
 
 #content-container {
+  margin-top: 2vh;
+  /*#filter-grid{
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(2, 1fr);
+          width:100%;
+  
+          #filter-buttons{
+              display: flex;
+              justify-content: space-evenly;
+              align-items: center;
+              grid-column: 2/3;
+              grid-row: 2/3;
+              > div{
+                  height:10vw;
+                  width:10vw;
+                  
+                  background-color: antiquewhite;
+  
+                  @media (min-width : $break_tab){
+                      height:100%;
+                      width:4vw;
+                  }
+              }
+          }
+      }*/
+}
+#content-container h2 {
+  margin-left: 2vw;
+}
+#content-container #filter-container {
+  width: 100%;
+}
+#content-container #filter-container #filter-grid {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 2vw;
+}
+@media (min-width: 905px) {
+  #content-container #filter-container #filter-grid {
+    width: 18vw;
+  }
+  #content-container #filter-container #filter-grid > div {
+    width: 4vw;
+    height: 4vw;
+  }
+}
+#content-container #filter-container #filter-grid > div {
+  display: flex;
+  width: 20%;
+  height: 20%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+#content-container #content-grid {
   display: grid;
   grid-template-columns: repeat(2, 44vw);
   grid-template-rows: repeat(3, 44vw);
   /*(100- gutter*3)/2*/
-  grid-gap: 4vw;
+  grid-gap: 2vw;
   box-sizing: content-box;
   margin: 4vw;
   justify-content: center;
 }
 @media (min-width: 905px) {
-  #content-container {
+  #content-container #content-grid {
     grid-template-columns: repeat(3, 18vw);
     grid-template-rows: repeat(2, 18vw);
     margin: 0;
     margin-bottom: 4vw;
-    margin-top: 4vw;
+    margin-top: 2vw;
+    grid-gap: 0.5vw;
   }
 }
-#content-container .example {
+#content-container #content-grid .example {
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  position: relative;
 }
-#content-container .example > div {
+#content-container #content-grid .example > div {
+  position: absolute;
   display: grid;
   align-content: flex-end;
   width: 100%;
@@ -152,11 +251,13 @@ header .home {
   padding-right: 4vw;
   background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8));
 }
-#content-container .example > div span {
+#content-container #content-grid .example > div span {
   display: none;
 }
 @media (min-width: 905px) {
-  #content-container .example > div {
+  #content-container #content-grid .example > div {
+    width: 100%;
+    height: 100%;
     text-align: center;
     justify-content: center;
     align-content: center;
@@ -165,14 +266,53 @@ header .home {
     background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8));
     opacity: 0;
   }
-  #content-container .example > div:hover {
+  #content-container #content-grid .example > div:hover {
     transition: opacity 0.3s linear;
     opacity: 1;
   }
-  #content-container .example > div span {
+  #content-container #content-grid .example > div span {
     padding-left: 8%;
     padding-right: 8%;
     display: none;
+  }
+}
+
+footer {
+  display: flex;
+  width: 100%;
+  background-color: black;
+  min-height: 50vh;
+  align-items: center;
+  color: white;
+  padding-bottom: 4vw;
+  margin-top: 4vw;
+}
+footer #contact-container {
+  width: 66vw;
+  display: block;
+  margin: 0 auto;
+  padding: 2vw;
+  box-sizing: border-box;
+}
+footer #contact-container h2 {
+  margin-bottom: 4vw;
+  text-align: center;
+}
+footer #contact-container #contact-links {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+footer #contact-container #contact-links > div {
+  height: 10vw;
+  width: 10vw;
+  border-radius: 50%;
+  background-color: antiquewhite;
+}
+@media (min-width: 905px) {
+  footer #contact-container #contact-links > div {
+    height: 5vw;
+    width: 5vw;
   }
 }
 
