@@ -19,7 +19,7 @@ body{
     margin:0;
     font-size: 10pt;
     font-family: font-light;
-    width:100vw;
+    //width:100vw;
 
     @media (min-width : $break_tab){
         font-size: 14pt;
@@ -36,7 +36,6 @@ h2{
     margin: 0;
 }
 header{
-    width:100vw;
 
     height:60%;
 
@@ -76,50 +75,60 @@ header{
         font-family:font-black;
         cursor: pointer;
     }
-    nav{
-        z-index: 10;
-        width:100%;
-        display:flex;
-        justify-content: center;
-        background-color: antiquewhite;
-        left:0;
-        h3{
-            margin:$small_margin;
-        }
-        a{
-            text-decoration: none;
+       
+}
+nav{
+    z-index: 10;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    background-color: antiquewhite;
+    left:0;
+    h3{
+        margin:$small_margin;
+    }
+    a{
+        text-decoration: none;
 
-            &:visited{
-                color: black;
-            }
-        }
-        #nav-links{
-            display: flex;
-            width:75%;
-            justify-content: space-around;
-            position:sticky;
-            margin:0.5em;
-
-            @media (min-width : $break_tab){
-                width:33%;
-            }
-
-            > div{
-                width:25%;
-                //height:120%;
-                background-color: beige;
-                text-align: center;
-                cursor: pointer;
-            }
-            .active{
-                text-decoration: underline;
-            }
+        &:visited{
+            color: black;
         }
     }
-    .home{
-        display: none;
+    #nav-links{
+        display: flex;
+        width:75%;
+        justify-content: space-around;
+        position:sticky;
+        margin:0.5em;
+
+        @media (min-width : $break_tab){
+            width:33%;
+        }
+
+        > div{
+            width:25%;
+            //height:120%;
+            background-color: beige;
+            text-align: center;
+            cursor: pointer;
+        }
+        .active{
+            text-decoration: underline;
+        }
     }
     
+}
+.home{
+    display: none;
+}
+#burger{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    display:none;
 }
 #align{
     display: grid;
@@ -137,7 +146,7 @@ header{
 
     padding-left:$gutter;
     padding-right:$gutter;
-    margin-top: $gutter;
+    padding-top: $gutter;
     padding-bottom:2vw;
     border-bottom:1px solid black;
 
@@ -309,7 +318,7 @@ header{
     }    
 }
 
-footer{
+#contact{
     display: flex;
     width:100%;
     background-color: black;

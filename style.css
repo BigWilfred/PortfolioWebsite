@@ -14,7 +14,6 @@ body {
   margin: 0;
   font-size: 10pt;
   font-family: font-light;
-  width: 100vw;
 }
 @media (min-width: 905px) {
   body {
@@ -35,7 +34,6 @@ h2 {
 }
 
 header {
-  width: 100vw;
   height: 60%;
   display: flex;
   flex-direction: column;
@@ -68,7 +66,8 @@ header #back-home {
   font-family: font-black;
   cursor: pointer;
 }
-header nav {
+
+nav {
   z-index: 10;
   width: 100%;
   display: flex;
@@ -76,16 +75,16 @@ header nav {
   background-color: antiquewhite;
   left: 0;
 }
-header nav h3 {
+nav h3 {
   margin: 0.5vw;
 }
-header nav a {
+nav a {
   text-decoration: none;
 }
-header nav a:visited {
+nav a:visited {
   color: black;
 }
-header nav #nav-links {
+nav #nav-links {
   display: flex;
   width: 75%;
   justify-content: space-around;
@@ -93,20 +92,31 @@ header nav #nav-links {
   margin: 0.5em;
 }
 @media (min-width: 905px) {
-  header nav #nav-links {
+  nav #nav-links {
     width: 33%;
   }
 }
-header nav #nav-links > div {
+nav #nav-links > div {
   width: 25%;
   background-color: beige;
   text-align: center;
   cursor: pointer;
 }
-header nav #nav-links .active {
+nav #nav-links .active {
   text-decoration: underline;
 }
-header .home {
+
+.home {
+  display: none;
+}
+
+#burger {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
   display: none;
 }
 
@@ -126,7 +136,7 @@ header .home {
   box-sizing: border-box;
   padding-left: 4vw;
   padding-right: 4vw;
-  margin-top: 4vw;
+  padding-top: 4vw;
   padding-bottom: 2vw;
   border-bottom: 1px solid black;
 }
@@ -277,7 +287,7 @@ header .home {
   }
 }
 
-footer {
+#contact {
   display: flex;
   width: 100%;
   background-color: black;
@@ -287,30 +297,30 @@ footer {
   padding-bottom: 4vw;
   margin-top: 4vw;
 }
-footer #contact-container {
+#contact #contact-container {
   width: 66vw;
   display: block;
   margin: 0 auto;
   padding: 2vw;
   box-sizing: border-box;
 }
-footer #contact-container h2 {
+#contact #contact-container h2 {
   margin-bottom: 4vw;
   text-align: center;
 }
-footer #contact-container #contact-links {
+#contact #contact-container #contact-links {
   display: flex;
   justify-content: space-evenly;
   margin: 0 auto;
 }
-footer #contact-container #contact-links > div {
+#contact #contact-container #contact-links > div {
   height: 10vw;
   width: 10vw;
   border-radius: 50%;
   background-color: antiquewhite;
 }
 @media (min-width: 905px) {
-  footer #contact-container #contact-links > div {
+  #contact #contact-container #contact-links > div {
     height: 5vw;
     width: 5vw;
   }
