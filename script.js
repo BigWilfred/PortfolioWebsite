@@ -5,72 +5,93 @@ var aboutTop;
 var projectTop;
 var contactTop;
 
-var stuck = false;
 
 $(document).ready(function(){
     originalNavTop = parseInt($('nav').offset().top);
     calculateAllTop();
 
-    /*top nav buttons
-    $('#graphics-nav, #web-nav').on('click', function(){
-        var id = $(this).attr('id');
+    $('#filter-grid > div').on('click', function(){
+        
+        //the class that needs to be FILTERED (the web button has print class etc)
+        var filterType = $(this).attr('class');
 
-        scrollWindow('#content-container');
+        //if the clicked button is already selected 
+        if($('.selected').length){
+            //if this is the one that is selected
+            if($(this).hasClass('selected')){
+                $('.selected').removeClass('selected');
+                $('.filtered').css('opacity','1');
+            }
+            //the other option is selected
+            else{
+                
+                $('.example').css('opacity','1');
+                $('.filtered').removeClass('filtered');
+                $('.selected').removeClass('selected');
+                $('.filtered').css('opacity','1');
+                //user has clicked web and print is already selected
+                if(filterType == 'print'){
+                    console.log('ither is selected');
+                    //remove the current filtered and selected
+                    $('.filtered').removeClass('filtered');
+                    $(this).addClass('selected');
+                    $(' div.example.print').addClass('filtered').css('opacity','0.2');
 
-        if($(this).hasClass('active')){
-            $('.example').css('display','inline');
-            //$(this).removeClass('active');
+                }
+
+                else{
+                    $('.filtered').removeClass('filtered');
+                    $(this).addClass('selected');
+                    $(' div.example.web').addClass('filtered').css('opacity','0.2');
+                }
+            }
         }
-
         else{
-            /*if any of the navs have active class remove underline
-            if($('.active').length){
-                console.log('active exists');
-                $('.active').removeClass('active');
-            }
-
-            if(id == 'web-nav'){
-                $('.graphics').css('display','none');
-                $('.web').css('display','inline');
-            }
-
-            else if(id == 'graphics-nav'){
-                $('.graphics').css('display','inline');
-                $('.web').css('display','none');
-            }
-
-            //$(this).addClass('active');
+            $('.filtered').removeClass('filtered');
+            $(this).addClass('selected');
+            $(' div.example.'+filterType).addClass('filtered').css('opacity','0.2');
+            
+            
         }
+        
+        //$(' div.example.'+filterType).css('display','none');
+        
+       
+    })
 
-        
-        
-    })*/
 
     $('#about-nav ').on('click', function(){
-        //$(this).addClass('active');
-        $('.example').css('display','inline');
+        //$('.example').css('display','inline');
         scrollWindow('#about');
     })
 
     $('#projects-nav').on('click', function(){
-        //$(this).addClass('active');
-        $('.example').css('display','inline');
+        //$('.example').css('display','inline');
         scrollWindow('#content-container');
     })
 
+    $('#contact-nav').on('click', function(){
+        //$('.example').css('display','inline');
+        scrollWindow('#contact');
+    })
+
     $('#back-home.home ').on('click', function(){
-        //$('.active').removeClass('active');
         $('.example').css('display','inline');
         scrollWindow('body');
     })
 
     //example link navigation
     $('#content-container .example > div').on('click', function(){
-        var targetLocation = $(this).attr('href');
-        window.location.href = targetLocation;
+
+        //stops filtered links from being clicked.
+        if(!$(this).parent().hasClass('filtered')){
+            var targetLocation = $(this).attr('href');
+            window.location.href = targetLocation;
+        }
+        
     })
 
-    
+    //controls what nav item is set to active and sticky nav
     $(window).on('scroll', function(){
         var windowTop = $(window).scrollTop();
 
@@ -89,13 +110,13 @@ $(document).ready(function(){
         }
         else if(windowTop >= contactTop){
             //will be used when site map is added
+            $('.active').removeClass('active');
+            $('#contact-nav').addClass('active');
         }
 
 
         //ghetto sticky
         if(windowTop >= originalNavTop){
-            console.log('sticky');
-            stuck = true;
 
             $('#align').css('padding-top',navHeight);
 
@@ -103,8 +124,6 @@ $(document).ready(function(){
             $('#back-home.home').css('display', 'inline').css('position', 'fixed');
         }
         else{
-            console.log('UNsticky');
-            stuck = false;
 
             $('#align').css('padding-top','0');
 
@@ -119,7 +138,7 @@ $(document).ready(function(){
 function scrollWindow (target){
 
     $(':animated').stop();
-    $('html, body').animate({scrollTop: $(target).offset().top - navHeight}, 1000);
+    $('html, body').animate({scrollTop: $(target).offset().top - navHeight + 1}, 1000);
 }
 
 function calculateAllTop(){
