@@ -34,13 +34,18 @@ h2 {
   margin: 0;
 }
 
+h3 {
+  text-decoration: underline;
+}
+
 header {
   height: 60%;
+  padding: 4vw;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  background-image: url("img/table.jpg");
+  background-image: url("img/table2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -50,21 +55,28 @@ header {
   header {
     min-height: 64vh;
     background-position: bottom left;
+    padding: 0;
   }
 }
 header #title-name {
-  padding: 2vw;
-  margin-bottom: 0.5vw;
+  margin-bottom: 4vw;
+  height: 60%;
+  margin-top: 4vw;
+  width: 100%;
+}
+header #title-name #tag-line {
+  text-align: center;
+  margin-top: 1vw;
+  font-size: 2em;
+  font-family: font-black;
+  color: #bcdc92;
+  width: 100%;
 }
 header #title-name img {
-  width: 100%;
+  width: auto;
   display: block;
   margin: 0 auto;
-}
-@media (min-width: 905px) {
-  header #title-name img {
-    width: 50%;
-  }
+  height: 100%;
 }
 header > div {
   cursor: pointer;
@@ -82,14 +94,16 @@ nav {
   z-index: 10;
   width: 100%;
   display: flex;
-  justify-content: center;
-  background-color: #f8f8f8;
-  opacity: 0.95;
+  justify-content: end;
+  opacity: 0.985;
+  position: absolute;
+  top: 2vw;
   left: 0;
-  color: #212121;
+  color: #f8f8f8;
 }
 nav h3 {
   margin: 0.5vw;
+  text-decoration: none;
 }
 nav a {
   text-decoration: none;
@@ -103,6 +117,7 @@ nav #nav-links {
   justify-content: space-around;
   position: sticky;
   margin: 0.5em;
+  font-family: font-black;
 }
 @media (min-width: 905px) {
   nav #nav-links {
@@ -122,16 +137,6 @@ nav #nav-links .active {
   display: none;
 }
 
-#burger {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: antiquewhite;
-  display: none;
-}
-
 #align {
   display: grid;
   justify-content: center;
@@ -140,7 +145,7 @@ nav #nav-links .active {
 }
 @media (min-width: 905px) {
   #align {
-    width: 66vw;
+    width: 55vw;
   }
 }
 
@@ -148,8 +153,18 @@ nav #nav-links .active {
   box-sizing: border-box;
   padding-left: 4vw;
   padding-right: 4vw;
-  padding-top: 4vw;
+  padding-top: 2vw;
+  margin-top: 2vw;
   padding-bottom: 2vw;
+  border-bottom: 2px solid rgba(33, 33, 33, 0.2);
+  background-color: white;
+}
+@media (min-width: 905px) {
+  #about {
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid rgba(33, 33, 33, 0.2);
+  }
 }
 #about span {
   font-size: 2.5em;
@@ -177,7 +192,7 @@ nav #nav-links .active {
   }
   #about #left-content {
     float: left;
-    margin-right: 0.5vw;
+    padding-right: 1vw;
   }
 }
 @media (min-width: 905px) and (min-width: 905px) {
@@ -188,7 +203,7 @@ nav #nav-links .active {
 @media (min-width: 905px) {
   #about #right-content {
     float: right;
-    margin-left: 0.5vw;
+    padding-left: 1vw;
   }
 }
 @media (min-width: 905px) and (min-width: 905px) {
@@ -196,31 +211,29 @@ nav #nav-links .active {
     margin-top: 0;
   }
 }
-
-#skills-container {
-  display: flex;
-  width: 100%;
-  border-bottom: 1px solid black;
-  padding-bottom: 2vw;
-}
-#skills-container > div {
-  width: 50%;
-  padding: 2vw;
-  padding-top: 0;
-}
-#skills-container > div h3 {
-  margin-top: 0;
-}
-#skills-container > div ul {
-  width: 75%;
-  padding: 0;
-  margin: 0 auto;
-}
-#skills-container > div ul li {
-  padding-bottom: 0.5vw;
-}
 @media (min-width: 905px) {
-  #skills-container #skills ul {
+  #about #skills-container {
+    display: flex;
+    width: 100%;
+    padding-top: 2vw;
+  }
+  #about #skills-container > div {
+    width: 50%;
+    padding: 2vw;
+    padding-top: 0;
+  }
+  #about #skills-container > div h3 {
+    margin-top: 0;
+  }
+  #about #skills-container > div ul {
+    width: 75%;
+    padding: 0;
+    margin: 0 auto;
+  }
+  #about #skills-container > div ul li {
+    padding-bottom: 0.5vw;
+  }
+  #about #skills-container #skills > ul {
     columns: 2;
   }
 }
@@ -231,6 +244,9 @@ nav #nav-links .active {
 #content-container h2 {
   margin-left: 2vw;
 }
+#content-container h3 {
+  text-decoration: none;
+}
 #content-container #filter-container {
   width: 100%;
 }
@@ -240,6 +256,8 @@ nav #nav-links .active {
   align-items: center;
   justify-content: space-around;
   margin-top: 2vw;
+  font-family: font-black;
+  color: #212121;
 }
 @media (min-width: 905px) {
   #content-container #filter-container #filter-grid {
@@ -278,6 +296,14 @@ nav #nav-links .active {
   box-sizing: content-box;
   margin: 4vw;
   justify-content: center;
+}
+#content-container #content-grid h3 {
+  margin-left: 4vw;
+}
+@media (min-width: 905px) {
+  #content-container #content-grid h3 {
+    margin-left: 0;
+  }
 }
 @media (min-width: 905px) {
   #content-container #content-grid {
@@ -321,16 +347,15 @@ nav #nav-links .active {
     padding-left: 0;
     padding-right: 0;
     background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8));
-    opacity: 0;
+    opacity: 1;
   }
   #content-container #content-grid .example > div:hover {
     transition: opacity 0.3s linear;
-    opacity: 1;
   }
   #content-container #content-grid .example > div span {
     padding-left: 8%;
     padding-right: 8%;
-    display: none;
+    display: inline;
   }
 }
 

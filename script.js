@@ -1,15 +1,21 @@
 var originalNavTop;
 
 var navHeight;
+
+var alignTop;
 var aboutTop;
 var projectTop;
 var contactTop;
 
+var navStuck = false;
 
 $(document).ready(function(){
     originalNavTop = parseInt($('nav').offset().top);
+    navHeight = $('nav').height();
     calculateAllTop();
 
+
+    //filter the projects by web/print
     $('#filter-grid > div').on('click', function(){
         
         //the class that needs to be FILTERED (the web button has print class etc)
@@ -97,57 +103,82 @@ $(document).ready(function(){
 
         calculateAllTop();
 
-        if(windowTop < aboutTop-4){
+        if(windowTop < aboutTop-navHeight- 4){
             $('.active').removeClass('active');
+            
         }
-        else if(windowTop >= aboutTop -4 && windowTop < projectTop){
+        else if(windowTop >= alignTop- navHeight -4 && windowTop < projectTop - navHeight){
             $('.active').removeClass('active');
             $('#about-nav').addClass('active');
         }
-        else if(windowTop >= projectTop && windowTop < contactTop){
+        else if(windowTop >= projectTop - navHeight && windowTop < contactTop - navHeight){
             $('.active').removeClass('active');
             $('#projects-nav').addClass('active');
         }
-        else if(windowTop >= contactTop){
+        else if(windowTop >= contactTop - navHeight){
             //will be used when site map is added
             $('.active').removeClass('active');
             $('#contact-nav').addClass('active');
         }
 
+        console.log('window Top = '+ windowTop);
+        console.log('alignTop- navHeight Top = '+ (alignTop- navHeight));
+
 
         //ghetto sticky
-        if(windowTop >= originalNavTop){
+        if(windowTop >= alignTop- navHeight){
 
-            $('#align').css('padding-top',navHeight);
+            //$('#align').css('padding-top',navHeight);
+            //$('#back-home.home').css('display', 'inline').css('position', 'fixed');
+            if(navStuck == false){
+                console.log(navStuck);
+                $('nav').css('display','none');
 
-            $('nav').css('position', 'fixed').css('top', '0');
-            $('#back-home.home').css('display', 'inline').css('position', 'fixed');
+                $('nav').css('position', 'fixed').css('top', '0').css('justify-content','center').css('background-color', '#f8f8f8').css('color', '#212121');
+                $('nav').slideDown(300);
+                navStuck = true;
+            }
+            
+            
         }
         else{
+            $('nav').css('position', 'absolute').css('top', '2vw').css('color', '#f8f8f8').css('background-color', 'unset');
+            $('nav').css('justify-content','end');
+            navStuck = false;
 
+            
+            /*
             $('#align').css('padding-top','0');
 
             $('nav').css('position', 'static');
-            $('#back-home.home').css('display', 'none').css('position', 'absolute');
+            $('#back-home.home').css('display', 'none').css('position', 'absolute');*/
         }
         
     })
 
 })
 
+
+$(window).on('resize', function(){
+    originalNavTop = parseInt($('nav').offset().top);
+    navHeight = $('nav').height();
+    calculateAllTop();
+})
 function scrollWindow (target){
 
     $(':animated').stop();
-    $('html, body').animate({scrollTop: $(target).offset().top - navHeight + 1}, 1000);
+
+    $('html, body').animate({scrollTop: $(target).offset().top - navHeight }, 1000);
 }
 
 function calculateAllTop(){
 
-    navHeight = $('nav').height();
-
     
-    aboutTop = parseInt($('#about').offset().top - navHeight);
-    projectTop = parseInt($('#content-container').offset().top - navHeight);
-    contactTop = parseInt($('#contact').offset().top - navHeight);
 
+    alignTop = parseInt($('#align').offset().top );
+
+    aboutTop = parseInt($('#about').offset().top );
+    projectTop = parseInt($('#content-container').offset().top - navHeight);
+    contactTop = parseInt($('#contact').offset().top );
+   
 }

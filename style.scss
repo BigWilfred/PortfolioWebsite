@@ -40,42 +40,49 @@ h2{
     font-family: font-reg;
     margin: 0;
 }
+h3{
+    text-decoration: underline;
+}
 header{
 
     height:60%;
+    padding:$gutter;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background-image: url('img/table2.png');
+    background-repeat:   no-repeat;
+    background-position: center;  
+    background-size: cover;
+    box-sizing: border-box;
 
     @media (min-width : $break_tab){
         min-height: 64vh;
         background-position: bottom left;
+        padding:0;
     }
-    
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    
-    background-image: url('img/table.jpg');
-
- 
-    background-repeat:   no-repeat;
-    background-position: center;
-    
-    background-size: cover;
-
-    //margin-bottom: $gutter;
-    box-sizing: border-box;
-
     #title-name{
-        padding:2vw;
-        margin-bottom: $small_margin;
-        img{
+        margin-bottom: $gutter;
+        height: 60%;
+        margin-top: 4vw;
+        width:100%;
+        #tag-line{
+            text-align: center;
+            margin-top: 1vw;
+            font-size: 2em;
+            font-family: font-black;
+            color: $primary_highlight;
             width:100%;
+        }
+        img{
+            width:auto;
             display: block;
             margin: 0 auto;
-
+            height:100%;
             @media (min-width : $break_tab){
-                width:50%;
+                
             }
         }
     }
@@ -96,14 +103,18 @@ nav{
     z-index: 10;
     width:100%;
     display:flex;
-    justify-content: center;
-    background-color: $white_background;
-    opacity:0.95;
+    justify-content: end;
+    //background-color: $white_background;
+    opacity:0.985;
+
+    position:absolute;
+    top:2vw;
 
     left:0;
-    color: $black_background;
+    color: $white_background;
     h3{
         margin:$small_margin;
+        text-decoration: none;
     }
     a{
         text-decoration: none;
@@ -118,7 +129,7 @@ nav{
         justify-content: space-around;
         position:sticky;
         margin:0.5em;
-
+        font-family: font-black;
         @media (min-width : $break_tab){
             width:33%;
         }
@@ -139,15 +150,7 @@ nav{
 .home{
     display: none;
 }
-#burger{
-    width:100%;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: antiquewhite;
-    display:none;
-}
+
 #align{
     display: grid;
     
@@ -155,7 +158,7 @@ nav{
     align-content: center;
     margin: 0 auto;
     @media (min-width : $break_tab){
-        width:66vw;
+        width:55vw;
     }
 }
 #about{
@@ -164,10 +167,19 @@ nav{
 
     padding-left:$gutter;
     padding-right:$gutter;
-    padding-top: $gutter;
-    padding-bottom:2vw;
-    
+    padding-top: 2vw;
+    margin-top: 2vw;
 
+    padding-bottom:2vw;
+    border-bottom:2px solid rgba(33, 33, 33, 0.2);
+    background-color: white;
+    @media (min-width : $break_tab){
+        //background-color: rgba(33, 33, 33, 0.05);
+        background-color:white;
+        border-radius: 20px;
+        border: 2px solid rgba(33, 33, 33, 0.2);
+    }
+    
     span{
         font-size: 2.5em;
         font-family: font-reg;
@@ -194,7 +206,8 @@ nav{
 
         #left-content{
             float:left;
-            margin-right:$small_margin;
+            //margin-right:$small_margin;
+            padding-right: 1vw;
             p{
                 &:first-of-type{
                     @media (min-width : $break_tab){
@@ -205,17 +218,48 @@ nav{
             }
             
 
-        }
+        } 
         #right-content{
             float:right;
-            margin-left:$small_margin;
-
+            //margin-left:$small_margin;
+            padding-left: 1vw;
             p{
                 &:first-of-type{
                     @media (min-width : $break_tab){
                         margin-top:0;
                     }
                     
+                }
+            }
+        }
+        #skills-container{
+            display: flex;
+            width:100%;
+            //border-bottom:1px solid black;
+            padding-top:2vw;
+            //padding-bottom:2vw;
+
+            >div{
+                width:50%;
+                padding:2vw;
+                padding-top:0;
+                h3{
+                    margin-top:0;
+                }
+                ul{
+                    width:75%;
+                    padding:0;
+                    margin: 0 auto;
+                    li{
+                        padding-bottom:0.5vw;
+                    }
+                }
+ 
+            }
+        
+            #skills{
+                > ul{
+                    columns: 2;
                 }
             }
         }
@@ -224,56 +268,27 @@ nav{
     
 
 }
-#skills-container{
-    display: flex;
-    width:100%;
-    border-bottom:1px solid black;
-    //padding-top:2vw;
-    padding-bottom:2vw;
-    >div{
-        width:50%;
-        padding:2vw;
-        padding-top:0;
-        h3{
-            margin-top:0;
-        }
-        ul{
-            width:75%;
-            padding:0;
-            margin: 0 auto;
-            li{
-                padding-bottom:0.5vw;
-            }
-        }
-        
 
-        
-    }
-
-    #skills{
-            
-        ul{
-            @media (min-width : $break_tab){
-                columns: 2;
-            }
-            
-        }
-    }
-}
 #content-container{
     margin-top: 2vh;
     h2{
         margin-left:2vw;
     }
+    h3{
+        text-decoration: none;
+    }
     #filter-container{
         width:100%;
-
+        
         #filter-grid{
             display: flex;
             margin:0 auto;
             align-items: center;
             justify-content: space-around;
             margin-top: 2vw;
+
+            font-family: font-black;
+            color:$black_background;
 
             @media (min-width : $break_tab){
                 width:50vw;
@@ -321,6 +336,13 @@ nav{
         
         justify-content: center;
 
+        h3{
+            margin-left:$gutter;
+            @media (min-width : $break_tab){
+                margin-left:0;
+            }
+        }
+
         @media (min-width : $break_tab){
             grid-template-columns: repeat(3, 18vw);
             grid-template-rows: repeat(2, 18vw);
@@ -352,6 +374,7 @@ nav{
                 
                 span{
                     display: none;
+
                 }
 
                 @media (min-width : $break_tab){
@@ -367,17 +390,17 @@ nav{
 
                     //make into a gradient
                     background-image: linear-gradient( rgba(255,255,255,0.1), rgba(255,255,255,0.8));
-                    opacity:0;
-        
+                    opacity:1;
+                    
                     &:hover{
                         transition: opacity 0.3s linear;
-                        opacity:1;
+                        //opacity:1;
                     }
         
                     span{
                         padding-left:8%;
                         padding-right:8%;
-                        display: none;
+                        display: inline;
 
                     }
                 }
