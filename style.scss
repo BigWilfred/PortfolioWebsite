@@ -19,6 +19,10 @@ $white_background: #f8f8f8;
     font-family: font-light;
     src: url('font/light.ttf');
 }
+@font-face {
+    font-family: font-mlighti;
+    src: url('font/mlighti.ttf');
+}
 
 body{
     margin:0;
@@ -44,9 +48,10 @@ h3{
     text-decoration: underline;
 }
 header{
-
+    
     height:60%;
     padding:$gutter;
+    padding-bottom: 8vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -72,7 +77,7 @@ header{
             text-align: center;
             margin-top: 1vw;
             font-size: 2em;
-            font-family: font-black;
+            font-family: font-mlighti;
             color: $primary_highlight;
             width:100%;
         }
@@ -111,7 +116,9 @@ nav{
     top:2vw;
 
     left:0;
-    color: $white_background;
+    color: white;
+
+    
     h3{
         margin:$small_margin;
         text-decoration: none;
@@ -125,13 +132,14 @@ nav{
     }
     #nav-links{
         display: flex;
-        width:75%;
+        width:90%;
         justify-content: space-around;
         position:sticky;
-        margin:0.5em;
-        font-family: font-black;
+        margin:1em;
+        font-family: font-reg;
         @media (min-width : $break_tab){
-            width:33%;
+            width:25%;
+            margin:0.5em;
         }
 
         > div{
@@ -142,7 +150,9 @@ nav{
             cursor: pointer;
         }
         .active{
-            text-decoration: underline;
+            //text-decoration: underline;
+            //box-shadow: 0px 10px 5px -5px rgba(188, 220, 146, 0.2);
+            color:$secondary_highlight;
         }
     }
     
@@ -168,16 +178,19 @@ nav{
     padding-left:$gutter;
     padding-right:$gutter;
     padding-top: 2vw;
-    margin-top: 2vw;
+    
+    list-style: url('img/bullet.svg');
 
     padding-bottom:2vw;
     border-bottom:2px solid rgba(33, 33, 33, 0.2);
     background-color: white;
+
     @media (min-width : $break_tab){
         //background-color: rgba(33, 33, 33, 0.05);
         background-color:white;
         border-radius: 20px;
         border: 2px solid rgba(33, 33, 33, 0.2);
+        margin-top: 2vw;
     }
     
     span{
@@ -201,26 +214,27 @@ nav{
         > div{
             display: block;
             box-sizing: border-box; 
-            width: 48%;
+            width: 50%;
         }
 
         #left-content{
             float:left;
-            //margin-right:$small_margin;
-            padding-right: 1vw;
+            padding-right:2vw;
+            border-right:2px solid rgba(33, 33, 33, 0.2);
             p{
                 &:first-of-type{
-                    @media (min-width : $break_tab){
-                        margin-top:0;
-                    }
-                    
+                    margin-top:0;
                 }
+
+                display: block;
+                margin:0 auto;
+                padding-bottom: 1em;
             }
             
 
         } 
-        #right-content{
-            float:right;
+        /*#right-content{
+            //float:right;
             //margin-left:$small_margin;
             padding-left: 1vw;
             p{
@@ -231,17 +245,17 @@ nav{
                     
                 }
             }
-        }
+        }*/
         #skills-container{
             display: flex;
-            width:100%;
-            //border-bottom:1px solid black;
-            padding-top:2vw;
-            //padding-bottom:2vw;
-
+            padding-left:2vw;
+            
+            flex-direction: column;
+            h3{
+                margin-bottom:0.5vw;
+            }
             >div{
-                width:50%;
-                padding:2vw;
+                width:100%;
                 padding-top:0;
                 h3{
                     margin-top:0;
@@ -251,13 +265,14 @@ nav{
                     padding:0;
                     margin: 0 auto;
                     li{
-                        padding-bottom:0.5vw;
+                        //padding-bottom:0.5vw;
                     }
                 }
  
             }
         
             #skills{
+                margin-top: 1em;
                 > ul{
                     columns: 2;
                 }
@@ -270,7 +285,8 @@ nav{
 }
 
 #content-container{
-    margin-top: 2vh;
+    margin-top: 2vw;
+
     h2{
         margin-left:2vw;
     }
@@ -278,8 +294,9 @@ nav{
         text-decoration: none;
     }
     #filter-container{
-        width:100%;
-        
+        //width:100%;
+        margin-right: 2vw;
+        margin-left: 2vw;
         #filter-grid{
             display: flex;
             margin:0 auto;
@@ -287,7 +304,7 @@ nav{
             justify-content: space-around;
             margin-top: 2vw;
 
-            font-family: font-black;
+            font-family: font-reg;
             color:$black_background;
 
             @media (min-width : $break_tab){
@@ -361,51 +378,69 @@ nav{
             background-repeat:   no-repeat;
             background-position: center center;
             position: relative;
-
+            background-color: #212121;
             > div{
-                position: absolute;
-                display: grid;
-                align-content: flex-end;
-                width:100%;
-                height:100%;
-                //padding-left: $gutter;
-                //padding-right: $gutter;
-                background-image: linear-gradient( rgba(255,255,255,0),rgba(255,255,255,0.1), rgba(255,255,255,0.8));
-                
-                span{
-                    display: none;
-
-                }
-
-                @media (min-width : $break_tab){
-
+                img{
                     width:100%;
                     height:100%;
-                    text-align: center;
-                    justify-content: center;
-                    align-content: center;
-        
-                    padding-left: 0;
-                    padding-right: 0;
+                    opacity:0;
 
-                    //make into a gradient
-                    background-image: linear-gradient( rgba(255,255,255,0.1), rgba(255,255,255,0.8));
-                    opacity:1;
-                    
-                    &:hover{
-                        transition: opacity 0.3s linear;
-                        //opacity:1;
-                    }
-        
-                    span{
-                        padding-left:8%;
-                        padding-right:8%;
-                        display: inline;
-
-                    }
                 }
-                
+                a{
+                    position: absolute;
+                    
+                    top:0;
+                    display: grid;
+                    align-content: flex-end;
+                    width:100%;
+                    height:100%;
+                    //padding-left: $gutter;
+                    //padding-right: $gutter;
+                    background-image: linear-gradient( rgba(255,255,255,0),rgba(255,255,255,0.1), rgba(255,255,255,0.8));
+                    
+                    text-decoration: none;
+
+                    &:visited{
+                        color:black;
+                    }
+                    &:link{
+                        color:black;
+                    }
+                    span{
+                        display: none;
+    
+                    }
+    
+                    @media (min-width : $break_tab){
+                        box-sizing: border-box;
+                        width:100%;
+                        //height:100%;
+                        text-align: center;
+                        justify-content: center;
+                        align-content: center;
+                        
+                        box-sizing: border-box;
+                        padding:$small_margin;
+                        background-image: linear-gradient( rgba(255,255,255,0.1), rgba(255,255,255,0.8));
+                        opacity:1;
+                        
+                        &:hover{
+                            transition: opacity 0.3s linear;
+                            //opacity:1;
+                        }
+            
+                        span{
+                            padding-left:8%;
+                            padding-right:8%;
+                            display: inline;
+    
+                        }
+                    }
+                    
+                }
             }
+            
+            
         }
     }    
 }
@@ -414,11 +449,15 @@ nav{
     display: flex;
     width:100%;
     background-color: $black_background;
-    min-height: 50vh;
+    min-height: 100vh;
     align-items: center;
     color: $white_background;
     padding-bottom: $gutter *3;
     padding-top: $gutter;
+
+    @media (min-width : $break_tab){
+        min-height: 50vh;
+    }
 
     #contact-container{
         
@@ -546,6 +585,25 @@ nav{
         > div{
             padding:0;
         }
+    }
+}
+#top-button{
+    height:40px;
+    width:40px;
+    position:fixed;
+    bottom: 2vw;
+    right:2vw;
+    //background-color: #bcdc92;
+    cursor: pointer;
+    opacity:0;
+
+    @media (min-width : $break_tab){
+        width:2vw;
+        height:2vw;
+    }
+    img{
+        width:100%;
+        height:100%;
     }
 }
 footer{

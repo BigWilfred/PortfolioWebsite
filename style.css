@@ -10,6 +10,10 @@
   font-family: font-light;
   src: url("font/light.ttf");
 }
+@font-face {
+  font-family: font-mlighti;
+  src: url("font/mlighti.ttf");
+}
 body {
   margin: 0;
   font-size: 10pt;
@@ -41,6 +45,7 @@ h3 {
 header {
   height: 60%;
   padding: 4vw;
+  padding-bottom: 8vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,7 +73,7 @@ header #title-name #tag-line {
   text-align: center;
   margin-top: 1vw;
   font-size: 2em;
-  font-family: font-black;
+  font-family: font-mlighti;
   color: #bcdc92;
   width: 100%;
 }
@@ -99,7 +104,7 @@ nav {
   position: absolute;
   top: 2vw;
   left: 0;
-  color: #f8f8f8;
+  color: white;
 }
 nav h3 {
   margin: 0.5vw;
@@ -113,15 +118,16 @@ nav a:visited {
 }
 nav #nav-links {
   display: flex;
-  width: 75%;
+  width: 90%;
   justify-content: space-around;
   position: sticky;
-  margin: 0.5em;
-  font-family: font-black;
+  margin: 1em;
+  font-family: font-reg;
 }
 @media (min-width: 905px) {
   nav #nav-links {
-    width: 33%;
+    width: 25%;
+    margin: 0.5em;
   }
 }
 nav #nav-links > div {
@@ -130,7 +136,7 @@ nav #nav-links > div {
   cursor: pointer;
 }
 nav #nav-links .active {
-  text-decoration: underline;
+  color: #bfbfbf;
 }
 
 .home {
@@ -154,7 +160,7 @@ nav #nav-links .active {
   padding-left: 4vw;
   padding-right: 4vw;
   padding-top: 2vw;
-  margin-top: 2vw;
+  list-style: url("img/bullet.svg");
   padding-bottom: 2vw;
   border-bottom: 2px solid rgba(33, 33, 33, 0.2);
   background-color: white;
@@ -164,6 +170,7 @@ nav #nav-links .active {
     background-color: white;
     border-radius: 20px;
     border: 2px solid rgba(33, 33, 33, 0.2);
+    margin-top: 2vw;
   }
 }
 #about span {
@@ -184,42 +191,48 @@ nav #nav-links .active {
     max-width: 80vw;
     padding-left: 2vw;
     padding-right: 2vw;
+    /*#right-content{
+        //float:right;
+        //margin-left:$small_margin;
+        padding-left: 1vw;
+        p{
+            &:first-of-type{
+                @media (min-width : $break_tab){
+                    margin-top:0;
+                }
+                
+            }
+        }
+    }*/
   }
   #about > div {
     display: block;
     box-sizing: border-box;
-    width: 48%;
+    width: 50%;
   }
   #about #left-content {
     float: left;
-    padding-right: 1vw;
+    padding-right: 2vw;
+    border-right: 2px solid rgba(33, 33, 33, 0.2);
   }
-}
-@media (min-width: 905px) and (min-width: 905px) {
+  #about #left-content p {
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 1em;
+  }
   #about #left-content p:first-of-type {
     margin-top: 0;
   }
-}
-@media (min-width: 905px) {
-  #about #right-content {
-    float: right;
-    padding-left: 1vw;
-  }
-}
-@media (min-width: 905px) and (min-width: 905px) {
-  #about #right-content p:first-of-type {
-    margin-top: 0;
-  }
-}
-@media (min-width: 905px) {
   #about #skills-container {
     display: flex;
-    width: 100%;
-    padding-top: 2vw;
+    padding-left: 2vw;
+    flex-direction: column;
+  }
+  #about #skills-container h3 {
+    margin-bottom: 0.5vw;
   }
   #about #skills-container > div {
-    width: 50%;
-    padding: 2vw;
+    width: 100%;
     padding-top: 0;
   }
   #about #skills-container > div h3 {
@@ -230,8 +243,8 @@ nav #nav-links .active {
     padding: 0;
     margin: 0 auto;
   }
-  #about #skills-container > div ul li {
-    padding-bottom: 0.5vw;
+  #about #skills-container #skills {
+    margin-top: 1em;
   }
   #about #skills-container #skills > ul {
     columns: 2;
@@ -239,7 +252,7 @@ nav #nav-links .active {
 }
 
 #content-container {
-  margin-top: 2vh;
+  margin-top: 2vw;
 }
 #content-container h2 {
   margin-left: 2vw;
@@ -248,7 +261,8 @@ nav #nav-links .active {
   text-decoration: none;
 }
 #content-container #filter-container {
-  width: 100%;
+  margin-right: 2vw;
+  margin-left: 2vw;
 }
 #content-container #filter-container #filter-grid {
   display: flex;
@@ -256,7 +270,7 @@ nav #nav-links .active {
   align-items: center;
   justify-content: space-around;
   margin-top: 2vw;
-  font-family: font-black;
+  font-family: font-reg;
   color: #212121;
 }
 @media (min-width: 905px) {
@@ -325,34 +339,48 @@ nav #nav-links .active {
   background-repeat: no-repeat;
   background-position: center center;
   position: relative;
+  background-color: #212121;
 }
-#content-container #content-grid .example > div {
+#content-container #content-grid .example > div img {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+#content-container #content-grid .example > div a {
   position: absolute;
+  top: 0;
   display: grid;
   align-content: flex-end;
   width: 100%;
   height: 100%;
   background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8));
+  text-decoration: none;
 }
-#content-container #content-grid .example > div span {
+#content-container #content-grid .example > div a:visited {
+  color: black;
+}
+#content-container #content-grid .example > div a:link {
+  color: black;
+}
+#content-container #content-grid .example > div a span {
   display: none;
 }
 @media (min-width: 905px) {
-  #content-container #content-grid .example > div {
+  #content-container #content-grid .example > div a {
+    box-sizing: border-box;
     width: 100%;
-    height: 100%;
     text-align: center;
     justify-content: center;
     align-content: center;
-    padding-left: 0;
-    padding-right: 0;
+    box-sizing: border-box;
+    padding: 0.5vw;
     background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8));
     opacity: 1;
   }
-  #content-container #content-grid .example > div:hover {
+  #content-container #content-grid .example > div a:hover {
     transition: opacity 0.3s linear;
   }
-  #content-container #content-grid .example > div span {
+  #content-container #content-grid .example > div a span {
     padding-left: 8%;
     padding-right: 8%;
     display: inline;
@@ -363,11 +391,16 @@ nav #nav-links .active {
   display: flex;
   width: 100%;
   background-color: #212121;
-  min-height: 50vh;
+  min-height: 100vh;
   align-items: center;
   color: #f8f8f8;
   padding-bottom: 12vw;
   padding-top: 4vw;
+}
+@media (min-width: 905px) {
+  #contact {
+    min-height: 50vh;
+  }
 }
 #contact #contact-container {
   display: block;
@@ -485,6 +518,26 @@ nav #nav-links .active {
   #web-container > div {
     padding: 0;
   }
+}
+
+#top-button {
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  bottom: 2vw;
+  right: 2vw;
+  cursor: pointer;
+  opacity: 0;
+}
+@media (min-width: 905px) {
+  #top-button {
+    width: 2vw;
+    height: 2vw;
+  }
+}
+#top-button img {
+  width: 100%;
+  height: 100%;
 }
 
 footer {

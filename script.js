@@ -10,8 +10,10 @@ var contactTop;
 var navStuck = false;
 
 $(document).ready(function(){
+
     originalNavTop = parseInt($('nav').offset().top);
     navHeight = $('nav').height();
+    
     calculateAllTop();
 
 
@@ -27,6 +29,7 @@ $(document).ready(function(){
             if($(this).hasClass('selected')){
                 $('.selected').removeClass('selected');
                 $('.filtered').css('opacity','1');
+                $('.filtered').removeClass('filtered');    
             }
             //the other option is selected
             else{
@@ -68,7 +71,7 @@ $(document).ready(function(){
 
     $('#about-nav ').on('click', function(){
         //$('.example').css('display','inline');
-        scrollWindow('#about');
+        scrollWindow('#align');
     })
 
     $('#projects-nav').on('click', function(){
@@ -87,7 +90,7 @@ $(document).ready(function(){
     })
 
     //example link navigation
-    $('#content-container .example > div').on('click', function(){
+    $('#content-container .example >div div').on('click', function(){
 
         //stops filtered links from being clicked.
         if(!$(this).parent().hasClass('filtered')){
@@ -97,25 +100,30 @@ $(document).ready(function(){
         
     })
 
+    //scrolls back up to the top of the screen
+    $('#top-button').on('click', function(){
+        $('html, body').animate({scrollTop: $('body').offset().top}, 1000);
+    })
+
     //controls what nav item is set to active and sticky nav
     $(window).on('scroll', function(){
         var windowTop = $(window).scrollTop();
 
         calculateAllTop();
 
-        if(windowTop < aboutTop-navHeight- 4){
+        if(windowTop < alignTop-navHeight){
             $('.active').removeClass('active');
             
         }
-        else if(windowTop >= alignTop- navHeight -4 && windowTop < projectTop - navHeight){
+        else if(windowTop >= - navHeight  && windowTop < projectTop - navHeight){
             $('.active').removeClass('active');
             $('#about-nav').addClass('active');
         }
-        else if(windowTop >= projectTop - navHeight && windowTop < contactTop - navHeight){
+        else if(windowTop >= projectTop - navHeight && windowTop < contactTop - navHeight -4){
             $('.active').removeClass('active');
             $('#projects-nav').addClass('active');
         }
-        else if(windowTop >= contactTop - navHeight){
+        else if(windowTop >= contactTop - navHeight - 4){
             //will be used when site map is added
             $('.active').removeClass('active');
             $('#contact-nav').addClass('active');
@@ -134,16 +142,26 @@ $(document).ready(function(){
                 console.log(navStuck);
                 $('nav').css('display','none');
 
-                $('nav').css('position', 'fixed').css('top', '0').css('justify-content','center').css('background-color', '#f8f8f8').css('color', '#212121');
+                $('nav').css('position', 'fixed').css('top', '0').css('justify-content','center').css('background-color', '#f8f8f8').css('color', '#212121').css('box-shadow', '0px 0px 5px 0px rgba(33,33,33,0.2)');
                 $('nav').slideDown(300);
+                $('#top-button').animate({opacity:1}, 300);
                 navStuck = true;
             }
             
             
         }
         else{
-            $('nav').css('position', 'absolute').css('top', '2vw').css('color', '#f8f8f8').css('background-color', 'unset');
-            $('nav').css('justify-content','end');
+            $('nav').css('position', 'absolute').css('top', '2vw').css('color', 'white').css('background-color', 'unset').css('box-shadow', 'none');
+            
+            //mobile break point
+            if($(window).width() <= 905){
+                $('nav').css('justify-content','center');
+            }
+            else{
+                $('nav').css('justify-content','end');
+            }
+            
+            $('#top-button').css('opacity','0');
             navStuck = false;
 
             
@@ -156,6 +174,16 @@ $(document).ready(function(){
         
     })
 
+    $('#content-container #content-grid .example > div ').mouseenter(function(){
+        if(!$(this).parent().hasClass('filtered')){
+            $(this).children('.exampleBackgroundImage').animate({opacity:1}, 300);
+            console.log('enter');
+        }
+       
+    })
+    $('#content-container #content-grid .example > div').mouseleave(function(){
+        $(this).children('.exampleBackgroundImage').animate({opacity:0}, 300);
+    })
 })
 
 
@@ -163,22 +191,21 @@ $(window).on('resize', function(){
     originalNavTop = parseInt($('nav').offset().top);
     navHeight = $('nav').height();
     calculateAllTop();
+    
 })
 function scrollWindow (target){
 
     $(':animated').stop();
 
-    $('html, body').animate({scrollTop: $(target).offset().top - navHeight }, 1000);
+    $('html, body').animate({scrollTop: $(target).offset().top - navHeight +1}, 1000);
 }
 
 function calculateAllTop(){
 
-    
-
     alignTop = parseInt($('#align').offset().top );
-
     aboutTop = parseInt($('#about').offset().top );
     projectTop = parseInt($('#content-container').offset().top - navHeight);
     contactTop = parseInt($('#contact').offset().top );
    
 }
+
