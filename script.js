@@ -9,6 +9,7 @@ var contactTop;
 
 var navStuck = false;
 
+
 $(document).ready(function(){
 
     originalNavTop = parseInt($('nav').offset().top);
@@ -16,7 +17,7 @@ $(document).ready(function(){
     
     calculateAllTop();
 
-
+    checkSpanOverflow()
     //filter the projects by web/print
     $('#filter-grid > div').on('click', function(){
         
@@ -129,8 +130,7 @@ $(document).ready(function(){
             $('#contact-nav').addClass('active');
         }
 
-        console.log('window Top = '+ windowTop);
-        console.log('alignTop- navHeight Top = '+ (alignTop- navHeight));
+
 
 
         //ghetto sticky
@@ -174,23 +174,33 @@ $(document).ready(function(){
         
     })
 
+    //filter content
     $('#content-container #content-grid .example > div ').mouseenter(function(){
         if(!$(this).parent().hasClass('filtered')){
             $(this).children('.exampleBackgroundImage').animate({opacity:1}, 300);
-            console.log('enter');
+            $(this).children('a').css('opacity','0');
         }
        
     })
     $('#content-container #content-grid .example > div').mouseleave(function(){
         $(this).children('.exampleBackgroundImage').animate({opacity:0}, 300);
+        $(this).children('a').css('opacity','1');
     })
 })
 
 
 $(window).on('resize', function(){
+    
+
+    /*clearTimeout(resizeDelay);
+    resizeDelay =setTimeout(function(){
+        
+    }, 0);*/
+
     originalNavTop = parseInt($('nav').offset().top);
     navHeight = $('nav').height();
     calculateAllTop();
+    checkSpanOverflow();
     
 })
 function scrollWindow (target){
@@ -209,3 +219,26 @@ function calculateAllTop(){
    
 }
 
+function checkSpanOverflow(){
+
+    var spanBot = calculateBot('div.example div a span:first-of-type');
+    var aBot = calculateBot('div.example div a:first-of-type');
+    if($(window).width() > 905){
+        console.log('------------------');
+        if(spanBot >= aBot){
+            $('html body div#align div#content-container div#content-grid div.example div a span').css('display', 'none');
+        }
+        else{
+            $('html body div#align div#content-container div#content-grid div.example div a span').css('display', 'inline');
+        }
+    }
+    else{
+        $('html body div#align div#content-container div#content-grid div.example div a span').css('display', 'none');
+    }
+    
+
+}
+
+function calculateBot(selector){
+    return $(selector).offset().top + $(selector).outerHeight();
+}
