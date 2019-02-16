@@ -27,9 +27,15 @@ $white_background: #f8f8f8;
 body{
     margin:0;
     font-size: 10pt;
+    line-height: 1.5;
     font-family: font-light;
     //width:100vw;
     background-color: $white_background;
+
+    background-image: url('img/cream-dust.png');
+    height: 100%;
+    width:100%;
+    transition: height 100s;
     @media (min-width : $break_tab){
         font-size: 12pt;
     }
@@ -64,7 +70,8 @@ header{
     box-sizing: border-box;
 
     @media (min-width : $break_tab){
-        min-height: 64vh;
+        //min-height: 64vh; trying to change so that i can test fixing hidding bar bug
+        min-height:45vw;
         background-position: bottom left;
         padding:0;
     }
@@ -98,7 +105,7 @@ nav{
     z-index: 10;
     width:100%;
     display:flex;
-    justify-content: end;
+    justify-content:center;
     //background-color: $white_background;
     opacity:0.985;
 
@@ -108,6 +115,9 @@ nav{
     left:0;
     color: white;
 
+    @media (min-width : $break_tab){
+        justify-content: end;
+    }
     
     h3{
         margin:$small_margin;
@@ -348,6 +358,10 @@ nav{
         .filtered{
             transition: opacity 0.3s linear;
             opacity:0.2;
+            a{
+                cursor:default;
+            }
+            
         }
         .example{
             cursor: pointer;
@@ -377,7 +391,7 @@ nav{
                     height:100%;
                     text-decoration: none;
 
-                    background-image: linear-gradient( rgba(33,33,33,0),rgba(33,33,33,0.1), rgba(33,33,33,0.8));
+                    //background-image: linear-gradient( rgba(33,33,33,0),rgba(33,33,33,0.1), rgba(33,33,33,0.8));
 
                     &:visited{
                         color:white;
@@ -430,7 +444,7 @@ nav{
     display: flex;
     width:100%;
     background-color: $black_background;
-    min-height: 80vh;
+    min-height: 150vw;
     align-items: center;
     color: $white_background;
     padding-bottom: $gutter *3;
@@ -487,18 +501,31 @@ nav{
             @media (min-width : $break_tab){
                 //width: 40%;
             }
-            > div{
+            > a{
                 height:14vw;
                 width:14vw;
-                border-radius: 50%;
-                background-color: antiquewhite;
-
+                //border-radius: 50%;
+                
                 @media (min-width : $break_tab){
                     height:7vw;
                     width:7vw;
                 }
+                
+                img{
+                    height: 100%;
+                }
             }
-        }        
+            .email-toggle{
+                cursor: pointer;
+            }
+        }
+
+        h3{
+            display:none;
+            padding-top:2vw;
+            text-align: center;
+            position:relative;
+        }     
     }
     
 }
@@ -514,6 +541,9 @@ nav{
         grid-template-columns: 1fr;
         display:flex;
         flex-direction: column;
+
+        min-width: 30vw;
+        //width:55%;
         max-width: 50%;
         margin: 0 auto;
         grid-gap: 0;
@@ -530,6 +560,9 @@ nav{
         width:100%;
 
         p{
+            span{
+                text-decoration: underline;
+            }
             &:last-of-type{
                 margin-bottom:0;
             }
@@ -585,14 +618,14 @@ nav{
         margin-top:2vw;
         box-sizing: content-box;
         justify-content: center;
-        grid-gap:2vw;
+        grid-gap:$small_margin;
 
         &.Advt{
             display: flex;
         }
         &.IXD{
             display: flex;
-            height: 100vw;
+            //height: 100vw;
             flex-direction: column;
             justify-content: start;
 
@@ -614,7 +647,7 @@ nav{
         &.booklet{
             grid-template-columns:100%;
             @media (min-width : $break_tab){
-                grid-template-columns: repeat(2, 33vw);
+                grid-template-columns: minmax(33vw,auto) minmax(27.5vw,auto);
             }
             img{
                 &:nth-of-type(3){
@@ -626,36 +659,44 @@ nav{
                 }
             }
         }
-    }
-    .UQLyfe{
-        grid-template-columns: repeat(2, 50%);
-        @media (min-width : $break_tab){
-            grid-template-columns: repeat(4, 50%);
-        }    
-    }
-    .RefRel{
 
-        @media (min-width : $break_tab){
-            grid-template-columns: repeat(2, 33vw);
-        }  
-    }
-    .Advt{
-        img{
-            display: inline;
-            margin:0;
-            height: 40vw;
-            width: auto;
-
+        &.RevRec{
+            grid-template-columns:100%;
             @media (min-width : $break_tab){
-                height: 22vw;
+                grid-template-columns: 50vw;
+            }
+        }
+
+        &.UQLyfe{
+            grid-template-columns: repeat(2, 50%);
+            @media (min-width : $break_tab){
+                grid-template-columns: repeat(4, 50%);
+            }    
+        }
+
+        &.RefRel{
+            @media (min-width : $break_tab){
+                grid-template-columns: repeat(2, 33vw);
+            }  
+        }
+        &.Advt{
+            img{
+                display: inline;
+                margin:0;
+                height: 40vw;
+                width: auto;
+    
+                @media (min-width : $break_tab){
+                    height: 22vw;
+                }
             }
         }
     }
-
+    
     #content-link{
         display:flex;
         width:100%;  
-        height: 8vh;
+        height: 18vw;
         justify-content: center;
         margin-top: 2vw;
         @media (min-width : $break_tab){
@@ -682,8 +723,45 @@ nav{
                 width:20%;
             }
 
+            h3{
+                font-family: font-reg;
+                text-decoration: none;
+            }
+
         }
     }
+}
+#back-home{
+    width:100%;
+    height:6vw;
+    position: absolute;
+    display:none;
+    background-color: rgb(248, 248, 248); 
+    box-shadow: rgba(33, 33, 33, 0.2) 0px 0px 5px 0px;
+    padding-top:1.2em ;
+    padding-bottom:1.2em ;
+    img{
+        width:30%;
+        height: auto;
+        margin:0 auto;
+        display:block;
+    }
+    @media (min-width : $break_tab){
+        background-color:unset;
+        position:absolute;
+        height:2vw;
+        padding:$small_margin;
+        background-color: none; 
+        box-shadow: none;
+        width:auto;
+        cursor: pointer;
+        img{
+            width:auto;
+            height: 100%;
+            margin:0;
+        }
+    }
+    
 }
 #top-button{
     height:40px;
@@ -696,8 +774,8 @@ nav{
     opacity:0;
 
     @media (min-width : $break_tab){
-        width:2vw;
-        height:2vw;
+        width:3vw;
+        height:3vw;
     }
     img{
         width:100%;
@@ -706,14 +784,24 @@ nav{
 }
 footer{
     color: $white_background;
-
     background-color: $black_background;
-
     padding-bottom: $small_margin;
+    padding-top: 4vw;
+
+    &.content-footer{
+        color: unset;
+        background-color: unset;
+
+        #site-map-container #site-map a{
+            color:black;
+        }
+    }
 
     #site-map-container{
+        
         display: block;
         margin:0 auto;
+        
         padding:2vw;
         margin-bottom: $gutter;
         
@@ -726,12 +814,13 @@ footer{
             width:66vw;
         }
         h3{
-            padding-left: 2vw;
+            //padding-left: 2vw;
             padding-right: 2vw;
             
             margin:0;
             margin-bottom: 2vw;
-
+            text-decoration: none;
+            text-emphasis: bold;
             @media (min-width : $break_tab){
                 //text-align: center;
             }
@@ -741,7 +830,7 @@ footer{
         }
         #site-map{
             display: flex;
-            justify-content: space-evenly;
+            justify-content: space-between;
             margin:0 auto;
             flex-wrap: wrap;
             ul{
@@ -754,7 +843,9 @@ footer{
             }
             a{
                 color:$white_background;
+                
             }
+            
             
         }
         

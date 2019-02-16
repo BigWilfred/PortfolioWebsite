@@ -11,6 +11,9 @@ var navStuck = false;
 
 
 $(document).ready(function(){
+    //$("html, body").css({
+    //    height: $(window).height()
+    //});
 
     originalNavTop = parseInt($('nav').offset().top);
     navHeight = $('nav').height();
@@ -71,17 +74,14 @@ $(document).ready(function(){
 
 
     $('#about-nav ').on('click', function(){
-        //$('.example').css('display','inline');
         scrollWindow('#align');
     })
 
     $('#projects-nav').on('click', function(){
-        //$('.example').css('display','inline');
         scrollWindow('#content-container');
     })
 
     $('#contact-nav').on('click', function(){
-        //$('.example').css('display','inline');
         scrollWindow('#contact');
     })
 
@@ -105,6 +105,11 @@ $(document).ready(function(){
     $('#top-button').on('click', function(){
         $('html, body').animate({scrollTop: $('body').offset().top}, 1000);
     })
+
+    //toggles the email
+    $('.email-toggle').on('click', function(){
+        $('#contact-container h3').slideToggle();
+    });
 
     //controls what nav item is set to active and sticky nav
     $(window).on('scroll', function(){
@@ -174,29 +179,37 @@ $(document).ready(function(){
         
     })
 
-    //filter content
+    //opacity of the background image content-grid
     $('#content-container #content-grid .example > div ').mouseenter(function(){
-        if(!$(this).parent().hasClass('filtered')){
-            $(this).children('.exampleBackgroundImage').animate({opacity:1}, 300);
-            $(this).children('a').css('opacity','0');
+        if($(window).width() > 905){
+            if(!$(this).parent().hasClass('filtered')){
+                $(this).children('.exampleBackgroundImage').animate({opacity:1}, 300);
+                $(this).children('a').css('opacity','0');
+            }
         }
-       
+        
     })
     $('#content-container #content-grid .example > div').mouseleave(function(){
-        $(this).children('.exampleBackgroundImage').animate({opacity:0}, 300);
-        $(this).children('a').css('opacity','1');
+        if($(window).width() > 905){
+            $(this).children('.exampleBackgroundImage').animate({opacity:0}, 300);
+            $(this).children('a').css('opacity','1');
+        }
+        
     })
 })
 
 
 $(window).on('resize', function(){
+
+    //resets all the backgound-images to visible if been hovered
+    if($(window).width() <= 905){
+        $('.example > div img').each(function(){
+            if($(this).css('opacity') == 0){
+                $(this).css('opacity', 0.8);
+            }
+        })
+    }
     
-
-    /*clearTimeout(resizeDelay);
-    resizeDelay =setTimeout(function(){
-        
-    }, 0);*/
-
     originalNavTop = parseInt($('nav').offset().top);
     navHeight = $('nav').height();
     calculateAllTop();
