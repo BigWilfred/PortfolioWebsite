@@ -11,16 +11,12 @@ var navStuck = false;
 
 
 $(document).ready(function(){
-    //$("html, body").css({
-    //    height: $(window).height()
-    //});
 
     originalNavTop = parseInt($('nav').offset().top);
     navHeight = $('nav').height();
-    
     calculateAllTop();
+    checkSpanOverflow();
 
-    checkSpanOverflow()
     //filter the projects by web/print
     $('#filter-grid > div').on('click', function(){
         
@@ -44,7 +40,6 @@ $(document).ready(function(){
                 $('.filtered').css('opacity','1');
                 //user has clicked web and print is already selected
                 if(filterType == 'print'){
-                    console.log('ither is selected');
                     //remove the current filtered and selected
                     $('.filtered').removeClass('filtered');
                     $(this).addClass('selected');
@@ -66,10 +61,6 @@ $(document).ready(function(){
             
             
         }
-        
-        //$(' div.example.'+filterType).css('display','none');
-        
-       
     })
 
 
@@ -135,48 +126,28 @@ $(document).ready(function(){
             $('#contact-nav').addClass('active');
         }
 
-
-
-
         //ghetto sticky
         if(windowTop >= alignTop- navHeight){
-
-            //$('#align').css('padding-top',navHeight);
-            //$('#back-home.home').css('display', 'inline').css('position', 'fixed');
             if(navStuck == false){
-                console.log(navStuck);
                 $('nav').css('display','none');
-
                 $('nav').css('position', 'fixed').css('top', '0').css('justify-content','center').css('background-color', '#f8f8f8').css('color', '#212121').css('box-shadow', '0px 0px 5px 0px rgba(33,33,33,0.2)');
                 $('nav').slideDown(300);
                 $('#top-button').animate({opacity:1}, 300);
                 navStuck = true;
-            }
-            
-            
+            }    
         }
         else{
             $('nav').css('position', 'absolute').css('top', '2vw').css('color', 'white').css('background-color', 'unset').css('box-shadow', 'none');
-            
             //mobile break point
             if($(window).width() <= 905){
                 $('nav').css('justify-content','center');
             }
             else{
-                $('nav').css('justify-content','end');
+                $('nav').css('justify-content','flex-end');
             }
-            
             $('#top-button').css('opacity','0');
             navStuck = false;
-
-            
-            /*
-            $('#align').css('padding-top','0');
-
-            $('nav').css('position', 'static');
-            $('#back-home.home').css('display', 'none').css('position', 'absolute');*/
         }
-        
     })
 
     //opacity of the background image content-grid
@@ -187,20 +158,17 @@ $(document).ready(function(){
                 $(this).children('a').css('opacity','0');
             }
         }
-        
     })
     $('#content-container #content-grid .example > div').mouseleave(function(){
         if($(window).width() > 905){
             $(this).children('.exampleBackgroundImage').animate({opacity:0}, 300);
             $(this).children('a').css('opacity','1');
         }
-        
     })
 })
 
 
 $(window).on('resize', function(){
-
     //resets all the backgound-images to visible if been hovered
     if($(window).width() <= 905){
         $('.example > div img').each(function(){
@@ -209,47 +177,47 @@ $(window).on('resize', function(){
             }
         })
     }
-    
+    else{
+        $('.example > div img').each(function(){
+            $(this).css('opacity', 0);
+        })
+    }
     originalNavTop = parseInt($('nav').offset().top);
     navHeight = $('nav').height();
     calculateAllTop();
-    checkSpanOverflow();
-    
+    checkSpanOverflow();  
 })
+
+//scrolls window to the top of the target selector
 function scrollWindow (target){
-
     $(':animated').stop();
-
     $('html, body').animate({scrollTop: $(target).offset().top - navHeight +1}, 1000);
 }
 
+//calculate the top position of each section
 function calculateAllTop(){
-
     alignTop = parseInt($('#align').offset().top );
     aboutTop = parseInt($('#about').offset().top );
     projectTop = parseInt($('#content-container').offset().top - navHeight);
     contactTop = parseInt($('#contact').offset().top );
-   
 }
 
+//determines if example subtext has gone beyond the container
+//if true -> hides container 
 function checkSpanOverflow(){
-
     var spanBot = calculateBot('div.example div a span:first-of-type');
     var aBot = calculateBot('div.example div a:first-of-type');
     if($(window).width() > 905){
-        console.log('------------------');
-        if(spanBot >= aBot){
-            $('html body div#align div#content-container div#content-grid div.example div a span').css('display', 'none');
+        if(spanBot >= aBot - 20){
+            $('html body div#align div#content-container div#content-grid div.example div a span').css('visibility', 'hidden');
         }
         else{
-            $('html body div#align div#content-container div#content-grid div.example div a span').css('display', 'inline');
+            $('html body div#align div#content-container div#content-grid div.example div a span').css('visibility', 'visible');
         }
     }
     else{
-        $('html body div#align div#content-container div#content-grid div.example div a span').css('display', 'none');
+        $('html body div#align div#content-container div#content-grid div.example div a span').css('visibility', 'visible');
     }
-    
-
 }
 
 function calculateBot(selector){
